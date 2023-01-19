@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Discipline } from '../model/discipline';
+import { DisciplinesServicesService } from '../services/disciplines-services.service';
 
 @Component({
   selector: 'app-disciplines',
@@ -9,15 +10,15 @@ import { Discipline } from '../model/discipline';
 
 export class DisciplinesComponent implements OnInit{
 
-  disciplines: Discipline[] = [
-    { _id: 1, category: 'physics', name:'quantumm physics'}
-  ];
+  disciplines: Discipline[] = [];
   displayedColumns = ['name', 'category'];
 
-  constructor(){}
+  constructor(
+    private disciplinesServicesService: DisciplinesServicesService
+  ){}
 
   ngOnInit(): void {
-
+    this.disciplines = this.disciplinesServicesService.list();
   }
 
 }
