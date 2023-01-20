@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +14,8 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
   imports: [
     CommonModule,
     CourseRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    SharedModule
   ]
 })
 export class CourseModule { }

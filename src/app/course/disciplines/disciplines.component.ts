@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, EMPTY, Observable, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { Discipline } from '../model/discipline';
 import { DisciplinesServicesService } from '../services/disciplines-services.service';
 
@@ -10,15 +13,31 @@ import { DisciplinesServicesService } from '../services/disciplines-services.ser
 
 export class DisciplinesComponent implements OnInit{
 
-  disciplines: Discipline[] = [];
+  disciplines$: Observable<Discipline[]>;
   displayedColumns = ['name', 'category'];
 
   constructor(
-    private disciplinesServicesService: DisciplinesServicesService
-  ){}
+    private disciplinesServicesService: DisciplinesServicesService,
+    private dialog: MatDialog
+  ){
+    this.disciplines$ = this.disciplinesServicesService.list()
+      .pipe(
+        catchError((err)=>{
+          this.onError('Load failed. Try again later.');
+          return of([]);
+        })
+      );
+  }
+
+  onError(errorMsg: string){
+    this.dialog.open(ErrorDialogComponent,
+      {
+        data: errorMsg
+      })
+  }
 
   ngOnInit(): void {
-    this.disciplines = this.disciplinesServicesService.list();
+
   }
 
 }
