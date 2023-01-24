@@ -5,6 +5,13 @@
 
   <mat-card>
     <table mat-table [dataSource]="disciplines" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>id</th>
+        <td mat-cell *matCellDef="let discipline">{{ discipline.id }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let discipline">{{ discipline.name }}

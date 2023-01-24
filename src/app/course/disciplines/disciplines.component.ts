@@ -14,7 +14,7 @@ import { DisciplinesServicesService } from '../services/disciplines-services.ser
 export class DisciplinesComponent implements OnInit{
 
   disciplines$: Observable<Discipline[]>;
-  displayedColumns = ['name', 'category'];
+  displayedColumns = ['id','name', 'category'];
 
   constructor(
     private disciplinesServicesService: DisciplinesServicesService,

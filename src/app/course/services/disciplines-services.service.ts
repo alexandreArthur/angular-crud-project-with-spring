@@ -7,7 +7,7 @@ import { delay, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DisciplinesServicesService {
-  private readonly API = 'assets/disciplines.json';
+  private readonly API = 'api/disciplines';
 
   constructor(private httpClient: HttpClient) { }
 
