@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, EMPTY, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { Discipline } from '../model/discipline';
@@ -14,11 +15,13 @@ import { DisciplinesServicesService } from '../services/disciplines-services.ser
 export class DisciplinesComponent implements OnInit{
 
   disciplines$: Observable<Discipline[]>;
-  displayedColumns = ['id','name', 'category'];
+  displayedColumns = ['id','name', 'category', 'actions'];
 
   constructor(
     private disciplinesServicesService: DisciplinesServicesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ){
     this.disciplines$ = this.disciplinesServicesService.list()
       .pipe(
@@ -29,6 +32,10 @@ export class DisciplinesComponent implements OnInit{
       );
   }
 
+  ngOnInit(): void {
+
+  }
+
   onError(errorMsg: string){
     this.dialog.open(ErrorDialogComponent,
       {
@@ -36,8 +43,8 @@ export class DisciplinesComponent implements OnInit{
       })
   }
 
-  ngOnInit(): void {
-
+  onAdd(){
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 
 }

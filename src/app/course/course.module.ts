@@ -5,11 +5,13 @@ import { CommonModule } from '@angular/common';
 import { CourseRoutingModule } from './course-routing.module';
 import { DisciplinesComponent } from './disciplines/disciplines.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
+import { DisciplineFormComponent } from './disciplines/discipline-form/discipline-form.component';
 
 
 @NgModule({
   declarations: [
-    DisciplinesComponent
+    DisciplinesComponent,
+    DisciplineFormComponent
   ],
   imports: [
     CommonModule,
