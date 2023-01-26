@@ -6,6 +6,7 @@ import { CourseRoutingModule } from './course-routing.module';
 import { DisciplinesComponent } from './disciplines/disciplines.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { DisciplineFormComponent } from './disciplines/discipline-form/discipline-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DisciplineFormComponent } from './disciplines/discipline-form/disciplin
     CommonModule,
     CourseRoutingModule,
     AppMaterialModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class CourseModule { }

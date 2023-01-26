@@ -18,4 +18,8 @@ export class DisciplinesServicesService {
     );
   }
 
+  save(params: Discipline): Observable<Discipline>{
+    return this.httpClient.post<Discipline>(this.API, params);
+  }
+
 }
