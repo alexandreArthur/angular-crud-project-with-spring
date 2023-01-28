@@ -1,6 +1,6 @@
 import { catchError, EMPTY } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Discipline } from '../../model/discipline';
 import { DisciplinesServicesService } from '../../services/disciplines-services.service';
@@ -13,7 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DisciplineFormComponent implements OnInit{
 
-  form: FormGroup;
+  form = new FormGroup({
+    name: new FormControl('', {nonNullable: true}),
+    category: new FormControl('', {nonNullable: true})
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,18 +24,14 @@ export class DisciplineFormComponent implements OnInit{
     private snackBar: MatSnackBar,
     private location: Location
     ){
-      this.form = this.formBuilder.group({
-        name: [null],
-        category: [null]
-      });
+      //this.form
   }
 
   ngOnInit(): void {
-
   }
 
   onSubmit(){
-    this.disciplinesServicesService.save(this.form.value)
+    this.disciplinesServicesService.save(this.DisciplineParams(this.form))
       .pipe(
         catchError((err)=>{
           this.onError('Error');
@@ -43,6 +42,13 @@ export class DisciplineFormComponent implements OnInit{
         this.onSuccess('Curso salvo com sucesso!');
         this.onCancel();
       });
+  }
+
+  private DisciplineParams(form: FormGroup): Discipline{
+    return{
+      name: form.value.name,
+      category: form.value.category
+    }
   }
 
   onSuccess(message: string, action?: string){
