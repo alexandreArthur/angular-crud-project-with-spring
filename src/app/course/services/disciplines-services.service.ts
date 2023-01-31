@@ -18,6 +18,10 @@ export class DisciplinesServicesService {
     );
   }
 
+  findById(id: string): Observable<Discipline>{
+    return this.httpClient.get<Discipline>(`${this.API}/${id}`);
+  }
+
   save(params: Discipline): Observable<Discipline>{
     return this.httpClient.post<Discipline>(this.API, params);
   }

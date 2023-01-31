@@ -33,7 +33,7 @@
         </mat-header-cell>
 
         <mat-cell *matCellDef="let discipline" class="mt-1">
-          <button mat-icon-button color="primary" aria-label="Edit discipline">
+          <button mat-icon-button color="primary" aria-label="Edit discipline" (click)="onEdit(discipline)">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" aria-label="Remove discipline">

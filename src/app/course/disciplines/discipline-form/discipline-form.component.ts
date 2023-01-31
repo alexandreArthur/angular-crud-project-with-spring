@@ -1,5 +1,5 @@
 import { catchError, EMPTY } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Discipline } from '../../model/discipline';
@@ -24,7 +24,6 @@ export class DisciplineFormComponent implements OnInit{
     private snackBar: MatSnackBar,
     private location: Location
     ){
-      //this.form
   }
 
   ngOnInit(): void {

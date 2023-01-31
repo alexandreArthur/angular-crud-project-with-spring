@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, EMPTY, Observable, of } from 'rxjs';
@@ -45,6 +45,10 @@ export class DisciplinesComponent implements OnInit{
 
   onAdd(){
     this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  onEdit(discipline: Discipline){
+    this.router.navigate(['edit', discipline.id ], { relativeTo: this.route });
   }
 
 }
