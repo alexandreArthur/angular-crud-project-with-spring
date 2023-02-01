@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { catchError, EMPTY } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -22,11 +23,17 @@ export class DisciplineFormComponent implements OnInit{
     private formBuilder: FormBuilder,
     private disciplinesServicesService: DisciplinesServicesService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
     ){
   }
 
   ngOnInit(): void {
+    const disp: Discipline = this.route.snapshot.data['discipline'];
+    this.form.setValue({
+      name: disp.name,
+      category: disp.category
+    })
   }
 
   onSubmit(){
